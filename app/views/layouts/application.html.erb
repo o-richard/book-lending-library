@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title><%= content_for(:title) || "Store" %></title>
+    <title><%= content_for(:title) || "OpenShelf" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
@@ -10,20 +10,31 @@
 
     <%= yield :head %>
 
-    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
-    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
-
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
 
-    <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <main class="container mx-auto mt-28 px-5 flex">
+  <body class="bg-gray-100 text-gray-800">
+    <nav class="bg-gray-800 py-4 px-6 shadow-md fixed top-0 w-full z-10">
+      <div class="container mx-auto flex justify-between items-center">
+        <a href="/" class="text-2xl font-bold text-white">OpenShelf</a>
+        <%= link_to "Books", books_path, class: "text-gray-300 hover:text-white" %>
+      </div>
+    </nav>
+
+    <main class="container mx-auto mt-20 p-5">
+      <div class="px-5">
+        <% if flash[:notice] %>
+          <div class="bg-green-600 text-white p-4 rounded-lg shadow-lg mb-4"> <%= flash[:notice] %> </div>
+        <% end %>
+        <% if flash[:alert] %>
+          <div class="bg-red-600 text-white p-4 rounded-lg shadow-lg mb-4"> <%= flash[:alert] %> </div>
+        <% end %>
+      </div>
       <%= yield %>
     </main>
   </body>

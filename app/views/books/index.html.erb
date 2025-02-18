@@ -1,11 +1,17 @@
-<h1>Book List</h1>
-<%= link_to "Add Book", new_book_path %>
-<ul>
-  <% @books.each do |book| %>
-    <li>
-      <%= link_to book.title, book %> - <%= book.author %>
-      (<%= link_to "Edit", edit_book_path(book) %> | 
-       <%= link_to "Delete", book, method: :delete, data: { confirm: "Are you sure?" } %>)
-    </li>
-  <% end %>
-</ul>
+<div class="flex justify-between items-center mb-6">
+  <h1 class="text-3xl font-semibold">Book List</h1>
+  <%= link_to "Add Book", new_book_path, class: "bg-gray-800 hover:bg-gray-700 text-white py-2 px-4 rounded-lg" %>
+</div>
+<div class="bg-gray-300 p-6 rounded-lg shadow-lg">
+  <ul class="divide-y divide-gray-400">
+    <% @books.each do |book| %>
+      <li class="py-4 flex justify-between items-center">
+        <span class="text-gray-800"><%= link_to book.title, book, class: "text-gray-700 hover:text-black font-semibold" %> - <%= book.author %></span>
+        <span class="flex gap-2">
+          <%= link_to "Edit", edit_book_path(book), class: "text-blue-400 hover:text-blue-300" %> |
+          <%= button_to "Delete", book, method: :delete, data: { confirm: "Are you sure?" }, class: "text-red-400 hover:text-red-300" %>
+        </span>
+      </li>
+    <% end %>
+  </ul>
+</div>

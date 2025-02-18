@@ -1,5 +1,7 @@
 # Library App
 
+![Dashboard](screenshots/dashboard.png)
+
 ## Features
 
 1. Manage books (Create, Read, Update, Delete)

@@ -21,7 +21,7 @@ class BooksControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create book" do
-    assert_difference('Book.count', 1) do
+    assert_difference("Book.count", 1) do
       post books_path, params: { book: { title: "New Book", author: "New Author", description: "New Description" } }
     end
     assert_redirected_to book_path(Book.last)
@@ -40,7 +40,7 @@ class BooksControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy book" do
-    assert_difference('Book.count', -1) do
+    assert_difference("Book.count", -1) do
       delete book_path(@book)
     end
     assert_redirected_to books_path
